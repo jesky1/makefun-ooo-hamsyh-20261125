@@ -67,7 +67,7 @@ test('validator rejects whitespace-only and multi-line input', async () => {
 test('validator rejects leading/trailing space and control characters', async () => {
   const { validateReply } = await import('./main.ts');
   assert.throws(() => validateReply(' padded.'), /start or end with whitespace/);
-  assert.throws(() => validateReply('a\u0007b'), /control characters/);
+  assert.throws(() => validateReply('a\u0007b.'), /control characters/);
 });
 
 test('validator rejects double spaces, missing terminal punctuation, and URLs', async () => {
