@@ -1,0 +1,1 @@
+{"description":"Funniest One-Line Out-of-Office Reply — make.fun entry by @jesky","license":"MIT","main":"main.ts","name":"makefun-ooo-hamsyh-20261125","scripts":{"start":"node main.ts","test":"node --test test.mjs"},"type":"module","version":"1.0.0"}
