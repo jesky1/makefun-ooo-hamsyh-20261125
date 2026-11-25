@@ -69,3 +69,13 @@ test('validator rejects leading/trailing space and control characters', async ()
   assert.throws(() => validateReply(' padded.'), /start or end with whitespace/);
   assert.throws(() => validateReply('a\u0007b'), /control characters/);
 });
+
+test('validator rejects double spaces, missing terminal punctuation, and URLs', async () => {
+  const { validateReply } = await import('./main.ts');
+  assert.throws(() => validateReply('two  spaces.'), /double spaces/);
+  assert.throws(() => validateReply('no punctuation'), /terminal punctuation/);
+  assert.throws(() => validateReply('see https://example.com.'), /URLs/);
+  assert.doesNotThrow(() =>
+    validateReply("I'm out of the office until Monday. My inbox will reply to itself, badly, and I will pretend I never saw any of it."),
+  );
+});

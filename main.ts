@@ -46,6 +46,15 @@ export function validateReply(reply: string): void {
   if (reply !== reply.trim()) {
     throw new Error('Reply must not start or end with whitespace.');
   }
+  if (reply.includes('  ')) {
+    throw new Error('Reply must not contain double spaces.');
+  }
+  if (!/[.!?]$/.test(reply)) {
+    throw new Error('Reply must end with terminal punctuation (. ! or ?).');
+  }
+  if (/https?:\/\/|www\./i.test(reply)) {
+    throw new Error('Reply must not contain URLs.');
+  }
   for (const ch of reply) {
     if (ch.charCodeAt(0) < 0x20 && ch !== '\t') {
       throw new Error('Reply must not contain control characters.');
